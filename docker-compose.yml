@@ -1,1 +1,26 @@
 ---
+version: '3.8'
+services:
+  controller:
+    build:
+      context: controller
+      dockerfile: Dockerfile
+    container_name: controller
+    image: traffic-controller:latest
+    expose:
+      - 1234
+    # env_file:
+    #   - fileName
+    networks:
+      - controller-network
+    # healthcheck:
+    #   test: ["sh", "echo", "\"Hello\""]
+    #   interval: 1m30s
+    #   timeout: 30s
+    #   retries: 5
+    #   start_period: 30s
+
+networks:
+  controller-network:
+    external: false
+    name: controller-network
